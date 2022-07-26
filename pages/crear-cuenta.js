@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Router from 'next/router';
 import Layout from '../components/layout/Layout';
 import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formulario';
 
-import firebase from '../firebase';
+import firebase from '@firebase/firebase';
 
 // Validaciones
 import useValidacion from '../hooks/useValidacion';

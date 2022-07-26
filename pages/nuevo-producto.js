@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Router, { useRouter } from 'next/router';
 import FileUploader from 'react-firebase-file-uploader';
 import Layout from '../components/layout/Layout';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import Head from 'next/head';
 
 // Global son estilos globales que se aplican en toda la app

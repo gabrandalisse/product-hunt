@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { FirebaseContext } from '../firebase';
+import FirebaseContext  from '@firebase/context';
 
 const useProductos = orden => {
     const [productos, guardarProductos] = useState([]);
 
     const { firebase } = useContext(FirebaseContext);
+
   
-    useEffect(() => {
-      const obtenerProductos = () => {
-        firebase.db.collection("productos").orderBy(orden, "desc").onSnapshot(manejarSnapshot);
+    useEffect( () => {
+      const obtenerProductos = async () => {
+        await firebase.getProducts(manejarSnapshot);
       };
-      obtenerProductos();
+      
+       obtenerProductos();
     }, []);
   
     function manejarSnapshot(snapshot) {

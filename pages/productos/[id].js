@@ -2,10 +2,10 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { es } from 'date-fns/locale';
-import { FirebaseContext } from '../../firebase';
+import FirebaseContext from '@firebase/context';
 import Layout from '../../components/layout/Layout';
 import Error404 from '../../components/layout/404';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Campo, InputSubmit } from '../../components/ui/Formulario';
 import Boton from '../../components/ui/Boton';
@@ -32,8 +32,8 @@ const CreadorProducto = styled.p`
 const Producto = () => {
 
     // State del componente
-    const [producto, guardarProducto] = useState({});
     const [error, guardarError] = useState(false);
+    const [producto, guardarProducto] = useState({});
     const [comentario, guardarComentario] = useState({});
     const [consultarDB, guardarConsultarDB] = useState(true);
 
@@ -47,8 +47,8 @@ const Producto = () => {
     useEffect(() => {
         if( id && consultarDB ) {
             const obtenerProducto = async () => {
-                const productoQuery = await firebase.db.collection("productos").doc(id);
-                const producto = await productoQuery.get();
+                // const productoQuery = await firebase.db.collection("productos").doc(id);
+                const producto = await firebase.getProduct(id);
 
                 if( producto.exists ){
                     guardarProducto(producto.data());
