@@ -9,7 +9,7 @@ import Error404 from '../components/layout/404';
 import { FirebaseContext } from '../firebase';
 
 // Validaciones
-import useValidacion from '../hooks/useValidacion';
+import useValidation from '../hooks/use-validation';
 import validarCrearProducto from '../validacion/validarCrearProducto';
 
 const STATE_INICIAL = {
@@ -30,9 +30,9 @@ const NuevoProducto = () => {
 
   const [ error, guardarError ] = useState(false);
 
-  const { valores, errores, handleSubmit, handleChange, handleBlur } = useValidacion(STATE_INICIAL, validarCrearProducto, crearProducto);
+  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation(STATE_INICIAL, validarCrearProducto, crearProducto);
 
-  const { nombre, empresa, imagen, url, descripcion } = valores;
+  const { nombre, empresa, imagen, url, descripcion } = values;
 
   // Hook de routing
   const router = useRouter();
@@ -131,7 +131,7 @@ const NuevoProducto = () => {
                   />
                 </Campo>
 
-                {errores.nombre && <Error>{errores.nombre}</Error>}
+                {errors.nombre && <Error>{errors.nombre}</Error>}
 
                 <Campo>
                   <label htmlFor="empresa">Empresa</label>
@@ -146,7 +146,7 @@ const NuevoProducto = () => {
                   />
                 </Campo>
 
-                {errores.empresa && <Error>{errores.empresa}</Error>}
+                {errors.empresa && <Error>{errors.empresa}</Error>}
 
                 <Campo>
                   <label htmlFor="imagen">Imagen</label>
@@ -176,7 +176,7 @@ const NuevoProducto = () => {
                   />
                 </Campo>
 
-                {errores.url && <Error>{errores.url}</Error>}
+                {errors.url && <Error>{errors.url}</Error>}
               </fieldset>
 
               <fieldset>
@@ -193,7 +193,7 @@ const NuevoProducto = () => {
                   />
                 </Campo>
 
-                {errores.descripcion && <Error>{errores.descripcion}</Error>}
+                {errors.descripcion && <Error>{errors.descripcion}</Error>}
               </fieldset>
 
               {error && <Error>{error}</Error>}

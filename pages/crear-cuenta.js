@@ -7,7 +7,7 @@ import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formular
 import firebase from '@firebase/firebase';
 
 // Validaciones
-import useValidacion from '../hooks/useValidacion';
+import useValidation from '../hooks/use-validation';
 import validarCrearCuenta from '../validacion/validarCrearCuenta';
 
 const STATE_INICIAL = {
@@ -20,9 +20,9 @@ const CrearCuenta = () => {
 
   const [ error, guardarError ] = useState(false);
 
-  const { valores, errores, handleSubmit, handleChange, handleBlur } = useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta);
+  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation(STATE_INICIAL, validarCrearCuenta, crearCuenta);
 
-  const { nombre, email, password } = valores;
+  const { nombre, email, password } = values;
 
   async function crearCuenta() {
     try {
@@ -63,7 +63,7 @@ const CrearCuenta = () => {
               />
             </Campo>
 
-            { errores.nombre && <Error>{ errores.nombre }</Error> }
+            { errors.nombre && <Error>{ errors.nombre }</Error> }
 
             <Campo>
               <label htmlFor="email">Email</label>
@@ -78,7 +78,7 @@ const CrearCuenta = () => {
                 />
             </Campo>
 
-            { errores.email && <Error>{ errores.email }</Error> }
+            { errors.email && <Error>{ errors.email }</Error> }
 
             <Campo>
               <label htmlFor="password">Password</label>
@@ -93,7 +93,7 @@ const CrearCuenta = () => {
                 />
             </Campo>
 
-            { errores.password && <Error>{ errores.password }</Error> }
+            { errors.password && <Error>{ errors.password }</Error> }
 
             { error && <Error>{error}</Error> }
 

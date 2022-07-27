@@ -7,7 +7,7 @@ import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formular
 import firebase from '../firebase';
 
 // Validaciones
-import useValidacion from '../hooks/useValidacion';
+import useValidation from '../hooks/use-validation';
 import validarIniciarSesion from '../validacion/validarIniciarSesion';
 
 const STATE_INICIAL = {
@@ -19,9 +19,9 @@ const Login = () => {
 
   const [ error, guardarError ] = useState(false);
 
-  const { valores, errores, handleSubmit, handleChange, handleBlur } = useValidacion(STATE_INICIAL, validarIniciarSesion, iniciarSesion);
+  const { values, errors, handleSubmit, handleChange, handleBlur } = useValidation(STATE_INICIAL, validarIniciarSesion, iniciarSesion);
 
-  const { email, password } = valores;
+  const { email, password } = values;
 
   async function iniciarSesion() {
     try {
@@ -62,7 +62,7 @@ const Login = () => {
                 />
             </Campo>
 
-            { errores.email && <Error>{ errores.email }</Error> }
+            { errors.email && <Error>{ errors.email }</Error> }
 
             <Campo>
               <label htmlFor="password">Password</label>
@@ -77,7 +77,7 @@ const Login = () => {
                 />
             </Campo>
 
-            { errores.password && <Error>{ errores.password }</Error> }
+            { errors.password && <Error>{ errors.password }</Error> }
 
             { error && <Error>{error}</Error> }
 
