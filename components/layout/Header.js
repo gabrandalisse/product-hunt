@@ -19,7 +19,7 @@ const HeaderContainer = styled.div`
 `;
 
 const Logo = styled.a`
-  color: var(--naranja);
+  color: var(--orange);
   font-size: 4rem;
   line-height: 0;
   font-weight: 700;
@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <header
       css={css`
-        border-bottom: 2px solid var(--gris3);
+        border-bottom: 2px solid var(--grey3);
         padding: 1rem 0;
       `}
     >
