@@ -1,10 +1,10 @@
 import App from 'next/app';
 import firebase from '@firebase/firebase';
 import FirebaseContext from '@firebase/context';
-import useAutenticacion from '@hooks/useAutenticacion';
+import useAuthentication from '@hooks/use-authentication';
 
 const MyApp = props => {
-  const usuario = useAutenticacion();
+  const usuario = useAuthentication();
 
   const { Component, pageProps } = props;
 
