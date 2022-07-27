@@ -21,14 +21,13 @@ const Nav = styled.nav`
 const Navigation = () => {
   const { usuario } = useContext(FirebaseContext);
 
-  // TODO: rename paths
   return (
     <Nav>
       <Link href="/">
         <a>Home</a>
       </Link>
-      <Link href="/populares">
-        <a>Topics</a>
+      <Link href="/trendings">
+        <a>Trendings</a>
       </Link>
       {usuario && (
         <Link href="/nuevo-producto">
