@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import Router from 'next/router';
 import Layout from '../components/layout/Layout';
-import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formulario';
+import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
 
 import firebase from '@firebase/firebase';
 
@@ -45,12 +45,12 @@ const CrearCuenta = () => {
             `}
           >Crear Cuenta</h1>
 
-          <Formulario
+          <Form
             onSubmit={handleSubmit}
             noValidate
           >
 
-            <Campo>
+            <Field>
               <label htmlFor="nombre">Nombre</label>
               <input 
                 type="text"
@@ -61,11 +61,11 @@ const CrearCuenta = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-            </Campo>
+            </Field>
 
             { errors.nombre && <Error>{ errors.nombre }</Error> }
 
-            <Campo>
+            <Field>
               <label htmlFor="email">Email</label>
                 <input 
                   type="email"
@@ -76,11 +76,11 @@ const CrearCuenta = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-            </Campo>
+            </Field>
 
             { errors.email && <Error>{ errors.email }</Error> }
 
-            <Campo>
+            <Field>
               <label htmlFor="password">Password</label>
                 <input 
                   type="password"
@@ -91,7 +91,7 @@ const CrearCuenta = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-            </Campo>
+            </Field>
 
             { errors.password && <Error>{ errors.password }</Error> }
 
@@ -102,7 +102,7 @@ const CrearCuenta = () => {
               value="Crear Cuenta"
             />
 
-          </Formulario>
+          </Form>
         </>
       </Layout>
     </div>

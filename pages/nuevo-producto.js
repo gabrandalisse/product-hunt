@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Router, { useRouter } from 'next/router';
 import FileUploader from 'react-firebase-file-uploader';
 import Layout from '../components/layout/Layout';
-import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formulario';
+import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
 import Error404 from '../components/layout/404';
 
 import { FirebaseContext } from '../firebase';
@@ -114,11 +114,11 @@ const NuevoProducto = () => {
               Nuevo Producto
             </h1>
 
-            <Formulario onSubmit={handleSubmit} noValidate>
+            <Form onSubmit={handleSubmit} noValidate>
               <fieldset>
                 <legend>Informacíon General</legend>
 
-                <Campo>
+                <Field>
                   <label htmlFor="nombre">Nombre</label>
                   <input
                     type="text"
@@ -129,11 +129,11 @@ const NuevoProducto = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                </Campo>
+                </Field>
 
                 {errors.nombre && <Error>{errors.nombre}</Error>}
 
-                <Campo>
+                <Field>
                   <label htmlFor="empresa">Empresa</label>
                   <input
                     type="text"
@@ -144,11 +144,11 @@ const NuevoProducto = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                </Campo>
+                </Field>
 
                 {errors.empresa && <Error>{errors.empresa}</Error>}
 
-                <Campo>
+                <Field>
                   <label htmlFor="imagen">Imagen</label>
                   <FileUploader
                     accept="image/*"
@@ -161,9 +161,9 @@ const NuevoProducto = () => {
                     onUploadSuccess={handleUploadSuccess}
                     onProgress={handleProgress}
                   />
-                </Campo>
+                </Field>
 
-                <Campo>
+                <Field>
                   <label htmlFor="url">URL</label>
                   <input
                     type="url"
@@ -174,7 +174,7 @@ const NuevoProducto = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                </Campo>
+                </Field>
 
                 {errors.url && <Error>{errors.url}</Error>}
               </fieldset>
@@ -182,7 +182,7 @@ const NuevoProducto = () => {
               <fieldset>
                 <legend>Sobre tu Producto</legend>
 
-                <Campo>
+                <Field>
                   <label htmlFor="descripcion">Descripción</label>
                   <textarea
                     id="descripcion"
@@ -191,7 +191,7 @@ const NuevoProducto = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                </Campo>
+                </Field>
 
                 {errors.descripcion && <Error>{errors.descripcion}</Error>}
               </fieldset>
@@ -199,7 +199,7 @@ const NuevoProducto = () => {
               {error && <Error>{error}</Error>}
 
               <InputSubmit type="submit" value="Crear Producto" />
-            </Formulario>
+            </Form>
           </>
         )}
       </Layout>

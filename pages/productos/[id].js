@@ -7,7 +7,7 @@ import Layout from '../../components/layout/Layout';
 import Error404 from '../../components/layout/404';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Campo, InputSubmit } from '../../components/ui/Formulario';
+import { Field, InputSubmit } from '../../components/ui/Form';
 import Button from '../../components/ui/Button';
 
 
@@ -197,13 +197,13 @@ const Producto = () => {
                     <>
                       <h2>Agrega tu comentario</h2>
                       <form onSubmit={agregarComentario}>
-                        <Campo>
+                        <Field>
                           <input
                             type="text"
                             name="mensaje"
                             onChange={comentarioChange}
                           />
-                        </Campo>
+                        </Field>
                         <InputSubmit type="submit" value="Agregar Comentario" />
                       </form>
                     </>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import Router from 'next/router';
 import Layout from '../components/layout/Layout';
-import { Formulario, Campo, InputSubmit, Error } from '../components/ui/Formulario';
+import { Form, Field, InputSubmit, Error } from '../components/ui/Form';
 
 import firebase from '../firebase';
 
@@ -44,12 +44,12 @@ const Login = () => {
             `}
           >Iniciar Sesión</h1>
 
-          <Formulario
+          <Form
             onSubmit={handleSubmit}
             noValidate
           >
 
-            <Campo>
+            <Field>
               <label htmlFor="email">Email</label>
                 <input 
                   type="email"
@@ -60,11 +60,11 @@ const Login = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-            </Campo>
+            </Field>
 
             { errors.email && <Error>{ errors.email }</Error> }
 
-            <Campo>
+            <Field>
               <label htmlFor="password">Password</label>
                 <input 
                   type="password"
@@ -75,7 +75,7 @@ const Login = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-            </Campo>
+            </Field>
 
             { errors.password && <Error>{ errors.password }</Error> }
 
@@ -86,7 +86,7 @@ const Login = () => {
               value="Iniciar Sesión"
             />
 
-          </Formulario>
+          </Form>
         </>
       </Layout>
     </div>
