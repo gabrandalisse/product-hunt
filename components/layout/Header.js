@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Button from "../ui/Button";
-import Buscar from "../ui/Buscar";
+import Search from "../ui/Search";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import Navigation from "./Navigation";
@@ -48,7 +48,7 @@ const Header = () => {
             <Logo>P</Logo>
           </Link>
 
-          <Buscar />
+          <Search />
           <Navigation />
         </div>
         <div
