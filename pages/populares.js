@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
-import DetallesProductos from '../components/layout/DetallesProducto';
+import ProductDetail from '../components/layout/ProductDetail';
 import useProducts from '../hooks/use-products';
 
 const Populares = () => {
 
-  const { productos } = useProducts("votos");
+  const { products } = useProducts("votos");
 
   return (
     <div>
@@ -13,10 +13,10 @@ const Populares = () => {
         <div className="listado-productos">
           <div className="contenedor">
             <ul className="bg-white">
-              {productos.map(producto => (
-                <DetallesProductos 
+              {products.map(producto => (
+                <ProductDetail 
                   key={producto.id}
-                  producto={producto}
+                  product={producto}
                 />
               ))}
             </ul>

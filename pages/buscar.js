@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import { useRouter } from 'next/router';
-import DetallesProductos from '../components/layout/DetallesProducto';
+import ProductDetail from '../components/layout/ProductDetail';
 import useProducts from '../hooks/use-products';
 
 const Buscar = () => {
@@ -30,9 +30,9 @@ const Buscar = () => {
           <div className="contenedor">
             <ul className="bg-white">
               {resultado.map(producto => (
-                <DetallesProductos 
+                <ProductDetail 
                   key={producto.id}
-                  producto={producto}
+                  product={producto}
                 />
               ))}
             </ul>
