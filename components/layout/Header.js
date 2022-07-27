@@ -3,7 +3,7 @@ import Boton from "../ui/Boton";
 import Buscar from "../ui/Buscar";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import Navegacion from "./Navegacion";
+import Navigation from "./Navigation";
 import React, { useContext } from "react";
 import FirebaseContext from "@firebase/context";
 
@@ -49,7 +49,7 @@ const Header = () => {
           </Link>
 
           <Buscar />
-          <Navegacion />
+          <Navigation />
         </div>
         <div
           css={css`
