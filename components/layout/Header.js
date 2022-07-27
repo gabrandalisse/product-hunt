@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Boton from "../ui/Boton";
+import Button from "../ui/Button";
 import Buscar from "../ui/Buscar";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
@@ -67,18 +67,18 @@ const Header = () => {
                 Welcome: {usuario.displayName}
               </p>
 
-              <Boton bgColor="true" onClick={() => firebase.cerrarSesion()}>
+              <Button bgColor="true" onClick={() => firebase.cerrarSesion()}>
                 Log Out
-              </Boton>
+              </Button>
             </>
           ) : (
             <>
               <Link href="/login">
-                <Boton bgColor="true">Log In</Boton>
+                <Button bgColor="true">Log In</Button>
               </Link>
 
               <Link href="/crear-cuenta">
-                <Boton>Create Account</Boton>
+                <Button>Create Account</Button>
               </Link>
             </>
           )}

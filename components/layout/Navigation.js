@@ -21,6 +21,7 @@ const Nav = styled.nav`
 const Navigation = () => {
   const { usuario } = useContext(FirebaseContext);
 
+  // TODO: rename paths
   return (
     <Nav>
       <Link href="/">

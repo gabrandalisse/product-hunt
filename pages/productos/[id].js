@@ -8,7 +8,7 @@ import Error404 from '../../components/layout/404';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Campo, InputSubmit } from '../../components/ui/Formulario';
-import Boton from '../../components/ui/Boton';
+import Button from '../../components/ui/Button';
 
 
 const ContenedorProducto = styled.div`
@@ -251,9 +251,9 @@ const Producto = () => {
                 </div>
 
                 <aside>
-                  <Boton target="_blank" bgColor="true" href={url}>
+                  <Button target="_blank" bgColor="true" href={url}>
                     Visitar URL
-                  </Boton>
+                  </Button>
 
                   <div
                     css={css`
@@ -268,14 +268,14 @@ const Producto = () => {
                       {votos} Votos
                     </p>
 
-                    {usuario && <Boton onClick={votarProducto}>Votar</Boton>}
+                    {usuario && <Button onClick={votarProducto}>Votar</Button>}
                   </div>
                 </aside>
               </ContenedorProducto>
               { puedeBorrar() && 
-                <Boton
+                <Button
                   onClick={eliminarProducto}
-                >ELiminar Producto</Boton>
+                >ELiminar Producto</Button>
               }
             </div>
           )}
