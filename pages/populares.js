@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import DetallesProductos from '../components/layout/DetallesProducto';
-import useProductos from '../hooks/useProductos';
+import useProducts from '../hooks/use-products';
 
 const Populares = () => {
 
-  const { productos } = useProductos("votos");
+  const { productos } = useProducts("votos");
 
   return (
     <div>

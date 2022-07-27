@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import { useRouter } from 'next/router';
 import DetallesProductos from '../components/layout/DetallesProducto';
-import useProductos from '../hooks/useProductos';
+import useProducts from '../hooks/use-products';
 
 const Buscar = () => {
 
   const router = useRouter();
   const { query: { q } } = router; // Extraer query de la url
 
-  const { productos } = useProductos("creado");
+  const { productos } = useProducts("creado");
   const [resultado, guardarResultado] = useState([]);
 
   useEffect(() => {
