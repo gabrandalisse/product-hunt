@@ -36,9 +36,8 @@ const Search = () => {
 
     if (search.trim() === "") return;
 
-    // TODO rename path
     Router.push({
-      pathname: "/buscar",
+      pathname: "/search",
       query: { q: search },
     });
   };
