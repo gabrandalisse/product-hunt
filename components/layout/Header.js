@@ -77,7 +77,7 @@ const Header = () => {
                 <Button bgColor="true">Log In</Button>
               </Link>
 
-              <Link href="/crear-cuenta">
+              <Link href="/create-account">
                 <Button>Create Account</Button>
               </Link>
             </>
