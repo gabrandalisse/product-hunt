@@ -44,8 +44,8 @@ const useValidation = (initialState, validate, callback) => {
    * Validates data in blur event
    */
   const handleBlur = () => {
-    const erroresValidacion = validate(values);
-    saveErrors(erroresValidacion);
+    const validationErrors = validate(values);
+    saveErrors(validationErrors);
   };
 
   return {
