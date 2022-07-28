@@ -6,7 +6,7 @@ import Layout from "../components/layout/Layout";
 import React, { useState, useContext } from "react";
 import useValidation from "../hooks/use-validation";
 import FileUploader from "react-firebase-file-uploader";
-import validarCrearProducto from "../validacion/validarCrearProducto";
+import validateCreateProduct from "../validations/validateCreateProduct";
 import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
 
 const STATE_INICIAL = {
@@ -27,7 +27,7 @@ const NewProduct = () => {
   const [error, saveError] = useState(false);
 
   const { values, errors, handleSubmit, handleChange, handleBlur } =
-    useValidation(STATE_INICIAL, validarCrearProducto, createProduct);
+    useValidation(STATE_INICIAL, validateCreateProduct, createProduct);
 
   const { nombre, empresa, imagen, url, descripcion } = values;
 

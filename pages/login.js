@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import firebase from "@firebase/firebase";
 import Layout from "../components/layout/Layout";
 import useValidation from "../hooks/use-validation";
-import validarIniciarSesion from "../validacion/validarIniciarSesion";
+import validateLogin from "../validations/validateLogin";
 import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
 
 const INICIAL_STATE = {
@@ -16,7 +16,7 @@ const Login = () => {
   const [error, saveError] = useState(false);
 
   const { values, errors, handleSubmit, handleChange, handleBlur } =
-    useValidation(INICIAL_STATE, validarIniciarSesion, logIn);
+    useValidation(INICIAL_STATE, validateLogin, logIn);
 
   const { email, password } = values;
 

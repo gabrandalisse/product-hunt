@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import firebase from "@firebase/firebase";
 import Layout from "../components/layout/Layout";
 import useValidation from "../hooks/use-validation";
-import validarCrearCuenta from "../validacion/validarCrearCuenta";
+import validateCreateAccount from "../validations/validateCreateAccount";
 import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
 
 const STATE_INICIAL = {
@@ -17,7 +17,7 @@ const CreateAccount = () => {
   const [error, saveError] = useState(false);
 
   const { values, errors, handleSubmit, handleChange, handleBlur } =
-    useValidation(STATE_INICIAL, validarCrearCuenta, createAccount);
+    useValidation(STATE_INICIAL, validateCreateAccount, createAccount);
 
   const { nombre, email, password } = values;
 
