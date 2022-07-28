@@ -1,22 +1,22 @@
 import React from 'react';
+import useProducts from '../hooks/use-products';
 import Layout from '../components/layout/Layout';
-import DetallesProductos from '../components/layout/DetallesProducto';
-import useProductos from '../hooks/useProductos';
+import ProductDetail from '../components/layout/ProductDetail';
 
 const Home = () => {
+  const { products } = useProducts("creado");
 
-  const { productos } = useProductos("creado");
-
+  // TODO rename css classes
   return (
     <div>
       <Layout>
         <div className="listado-productos">
           <div className="contenedor">
             <ul className="bg-white">
-              {productos.map(producto => (
-                <DetallesProductos 
-                  key={producto.id}
-                  producto={producto}
+              {products.map(product => (
+                <ProductDetail 
+                  key={product.id}
+                  product={product}
                 />
               ))}
             </ul>

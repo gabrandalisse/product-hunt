@@ -4,28 +4,32 @@ import React, { useState } from "react";
 import firebase from "@firebase/firebase";
 import Layout from "../components/layout/Layout";
 import useValidation from "../hooks/use-validation";
-import validateLogin from "../validations/validateLogin";
+import validateCreateAccount from "../validations/validateCreateAccount";
 import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
 
-const INICIAL_STATE = {
+const STATE_INICIAL = {
+  nombre: "",
   email: "",
   password: "",
 };
 
-const Login = () => {
+const CreateAccount = () => {
   const [error, saveError] = useState(false);
 
   const { values, errors, handleSubmit, handleChange, handleBlur } =
-    useValidation(INICIAL_STATE, validateLogin, logIn);
+    useValidation(STATE_INICIAL, validateCreateAccount, createAccount);
 
-  const { email, password } = values;
+  const { nombre, email, password } = values;
 
-  async function logIn() {
+  async function createAccount() {
     try {
-      await firebase.login(email, password);
+      await firebase.registrar(nombre, email, password);
       Router.push("/");
     } catch (error) {
-      console.error("An error ocurred while triying to log in", error.message);
+      console.error(
+        "An error ocurred while triying to create the user",
+        error.message
+      );
       saveError(error.message);
     }
   }
@@ -40,10 +44,25 @@ const Login = () => {
               margin-top: 5rem;
             `}
           >
-            Log In
+            Create Account
           </h1>
 
           <Form onSubmit={handleSubmit} noValidate>
+            <Field>
+              <label htmlFor="nombre">Name</label>
+              <input
+                type="text"
+                id="nombre"
+                placeholder="Your Name"
+                name="nombre"
+                value={nombre}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </Field>
+
+            {errors.nombre && <Error>{errors.nombre}</Error>}
+
             <Field>
               <label htmlFor="email">Email</label>
               <input
@@ -76,7 +95,7 @@ const Login = () => {
 
             {error && <Error>{error}</Error>}
 
-            <InputSubmit type="submit" value="Log In" />
+            <InputSubmit type="submit" value="Create Account" />
           </Form>
         </>
       </Layout>
@@ -84,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CreateAccount;
