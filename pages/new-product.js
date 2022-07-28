@@ -35,10 +35,10 @@ const NewProduct = () => {
   const router = useRouter();
 
   // Firebase CRUD operations context
-  const { usuario, firebase } = useContext(FirebaseContext);
+  const { user, firebase } = useContext(FirebaseContext);
 
   async function createProduct() {
-    if (!usuario) {
+    if (!user) {
       return router.push("/login");
     }
 
@@ -53,8 +53,8 @@ const NewProduct = () => {
       comentarios: [],
       creado: Date.now(),
       creador: {
-        id: usuario.uid,
-        nombre: usuario.displayName,
+        id: user.uid,
+        nombre: user.displayName,
       },
       haVotado: [],
     };
@@ -95,7 +95,7 @@ const NewProduct = () => {
   return (
     <div>
       <Layout>
-        {!usuario ? (
+        {!user ? (
           <Error404 />
         ) : (
           <>

@@ -42,7 +42,7 @@ const Producto = () => {
     const { query: { id } } = router;
 
     // Context de firebase
-    const { firebase, usuario } = useContext(FirebaseContext);
+    const { firebase, user } = useContext(FirebaseContext);
 
     useEffect(() => {
         if( id && consultarDB ) {
@@ -68,15 +68,15 @@ const Producto = () => {
 
     // Administrar y validar votos
     const votarProducto = () => {
-      if( !usuario ) {
+      if( !user ) {
         return router.push("/login");
       }
 
       // Verificar si el usuario actual voto
-      if( haVotado.includes(usuario.uid) ) return;
+      if( haVotado.includes(user.uid) ) return;
 
       // Guardar el id del usuario que voto
-      const nuevoHaVotado = [...haVotado, usuario.uid];
+      const nuevoHaVotado = [...haVotado, user.uid];
 
       // Obtener y sumar un nuevo voto
       const nuevoTotal = votos + 1;
@@ -114,13 +114,13 @@ const Producto = () => {
     const agregarComentario = e => {
       e.preventDefault();
 
-      if( !usuario ) {
+      if( !user ) {
         return router.push("/login");
       }
 
       // Info extra al comentario
-      comentario.usuarioId = usuario.uid;
-      comentario.usuarioNombre = usuario.displayName;
+      comentario.usuarioId = user.uid;
+      comentario.usuarioNombre = user.displayName;
 
       // Tomar copia de comentario y agregar al array
       const nuevosComentarios = [...comentarios, comentario];
@@ -141,18 +141,18 @@ const Producto = () => {
 
     // Funcion que verisa que el creador del prod sea el mismo que esta auth
     const puedeBorrar = () => {
-      if(!usuario) return false;
-      if(creador.id === usuario.uid) return true;
+      if(!user) return false;
+      if(creador.id === user.uid) return true;
     };
 
     // Elimina un pro de la bd
     const eliminarProducto = async () => {
 
-      if( !usuario ) {
+      if( !user ) {
         return router.push("/login");
       }
 
-      if( creador.id !== usuario.uid ) {
+      if( creador.id !== user.uid ) {
         return router.push("/");
       }
 
@@ -193,7 +193,7 @@ const Producto = () => {
                   <img src={urlimagen} />
                   <p>{descripcion}</p>
 
-                  {usuario && (
+                  {user && (
                     <>
                       <h2>Agrega tu comentario</h2>
                       <form onSubmit={agregarComentario}>
@@ -268,7 +268,7 @@ const Producto = () => {
                       {votos} Votos
                     </p>
 
-                    {usuario && <Button onClick={votarProducto}>Votar</Button>}
+                    {user && <Button onClick={votarProducto}>Votar</Button>}
                   </div>
                 </aside>
               </ContenedorProducto>

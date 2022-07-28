@@ -19,7 +19,7 @@ const Nav = styled.nav`
 `;
 
 const Navigation = () => {
-  const { usuario } = useContext(FirebaseContext);
+  const { user } = useContext(FirebaseContext);
 
   return (
     <Nav>
@@ -29,7 +29,7 @@ const Navigation = () => {
       <Link href="/trendings">
         <a>Trendings</a>
       </Link>
-      {usuario && (
+      {user && (
         <Link href="/new-product">
           <a>New Product</a>
         </Link>

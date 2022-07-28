@@ -28,7 +28,7 @@ const Logo = styled.a`
 `;
 
 const Header = () => {
-  const { usuario, firebase } = useContext(FirebaseContext);
+  const { user, firebase } = useContext(FirebaseContext);
 
   return (
     <header
@@ -57,14 +57,14 @@ const Header = () => {
             align-items: center;
           `}
         >
-          {usuario ? (
+          {user ? (
             <>
               <p
                 css={css`
                   margin-right: 2rem;
                 `}
               >
-                Welcome: {usuario.displayName}
+                Welcome: {user.displayName}
               </p>
 
               <Button bgColor="true" onClick={() => firebase.cerrarSesion()}>
