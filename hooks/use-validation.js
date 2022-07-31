@@ -19,7 +19,7 @@ const useValidation = (initialState, validate, callback) => {
 
   /**
    * Saves the values of the input fields in the component state
-   * @param {*} e The change event information
+   * @param {object} e The change event information
    */
   const handleChange = (e) => {
     saveValues({
@@ -30,7 +30,7 @@ const useValidation = (initialState, validate, callback) => {
 
   /**
    * This functions validates data in submit event
-   * @param {*} e The submit event information
+   * @param {object} e The submit event information
    */
   const handleSubmit = (e) => {
     e.preventDefault();
