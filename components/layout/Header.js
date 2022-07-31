@@ -67,7 +67,7 @@ const Header = () => {
                 Welcome: {user.displayName}
               </p>
 
-              <Button bgColor="true" onClick={() => firebase.cerrarSesion()}>
+              <Button bgColor="true" onClick={() => firebase.logOut()}>
                 Log Out
               </Button>
             </>

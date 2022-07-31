@@ -2,10 +2,10 @@ import Router from "next/router";
 import { css } from "@emotion/react";
 import React, { useState } from "react";
 import firebase from "@firebase/firebase";
-import Layout from "../components/layout/Layout";
-import useValidation from "../hooks/use-validation";
-import validateLogin from "../validations/validateLogin";
-import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
+import Layout from "@components/layout/Layout";
+import useValidation from "@hooks/use-validation";
+import validateLogin from "@validations/validateLogin";
+import { Form, Field, InputSubmit, Error } from "@components/ui/Form";
 
 const INICIAL_STATE = {
   email: "",

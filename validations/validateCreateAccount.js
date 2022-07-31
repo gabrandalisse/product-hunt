@@ -6,7 +6,7 @@
 export default function validateCreateAccount(values) {
   let errors = {};
 
-  if (!values.nombre) errors.nombre = "The name is required.";
+  if (!values.name) errors.name = "The name is required.";
 
   if (!values.email) {
     errors.email = "The email is required.";

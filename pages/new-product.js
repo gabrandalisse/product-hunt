@@ -1,20 +1,23 @@
 import { css } from "@emotion/react";
 import Router, { useRouter } from "next/router";
-import Error404 from "../components/layout/404";
 import FirebaseContext from "@firebase/context";
-import Layout from "../components/layout/Layout";
 import React, { useState, useContext } from "react";
-import useValidation from "../hooks/use-validation";
 import FileUploader from "react-firebase-file-uploader";
-import validateCreateProduct from "../validations/validateCreateProduct";
-import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
+import validateCreateProduct from "@validations/validateCreateProduct";
+
+// Components
+import Error404 from "@components/layout/404";
+import Layout from "@components/layout/Layout";
+import { Form, Field, InputSubmit, Error } from "@components/ui/Form";
+
+// Hooks
+import useValidation from "@hooks/use-validation";
 
 const STATE_INICIAL = {
-  nombre: "",
-  empresa: "",
-  // imagen: "",
+  name: "",
+  enterprise: "",
   url: "",
-  descripcion: "",
+  description: "",
 };
 
 const NewProduct = () => {
@@ -29,7 +32,7 @@ const NewProduct = () => {
   const { values, errors, handleSubmit, handleChange, handleBlur } =
     useValidation(STATE_INICIAL, validateCreateProduct, createProduct);
 
-  const { nombre, empresa, imagen, url, descripcion } = values;
+  const { name, enterprise, image, url, description } = values;
 
   // Routing hook
   const router = useRouter();
@@ -44,23 +47,23 @@ const NewProduct = () => {
 
     // Create the new product object
     const product = {
-      nombre,
-      empresa,
+      name,
+      enterprise,
       url,
-      urlimagen: urlImage,
-      descripcion,
-      votos: 0,
-      comentarios: [],
-      creado: Date.now(),
-      creador: {
+      urlimage: urlImage,
+      description,
+      votes: 0,
+      comments: [],
+      created: Date.now(),
+      owner: {
         id: user.uid,
-        nombre: user.displayName,
+        name: user.displayName,
       },
-      haVotado: [],
+      votedBy: [],
     };
 
-    // TODO save the product in the db
-    // firebase.db.collection('productos').add(producto)
+    // Save the product in the db
+    firebase.createProduct(product);
 
     return router.push("/");
   }
@@ -77,19 +80,13 @@ const NewProduct = () => {
     console.error(error);
   };
 
-  const handleUploadSuccess = (name) => {
+  const handleUploadSuccess = async (name) => {
     saveProgress(100);
     saveUploading(false);
     saveImageName(name);
 
-    firebase.storage
-      .ref("productos")
-      .child(name)
-      .getDownloadURL()
-      .then((url) => {
-        console.log(url);
-        saveUrlImage(url);
-      });
+    const imgURL = await firebase.getImageURL(name);
+    saveUrlImage(imgURL);
   };
 
   return (
@@ -118,14 +115,14 @@ const NewProduct = () => {
                     type="text"
                     id="name"
                     placeholder="Product name"
-                    name="nombre"
-                    value={nombre}
+                    name="name"
+                    value={name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                 </Field>
 
-                {errors.nombre && <Error>{errors.nombre}</Error>}
+                {errors.name && <Error>{errors.name}</Error>}
 
                 <Field>
                   <label htmlFor="enterprise">Enterprise</label>
@@ -133,23 +130,23 @@ const NewProduct = () => {
                     type="text"
                     id="enterprise"
                     placeholder="Enterprise name"
-                    name="empresa"
-                    value={empresa}
+                    name="enterprise"
+                    value={enterprise}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                 </Field>
 
-                {errors.empresa && <Error>{errors.empresa}</Error>}
+                {errors.enterprise && <Error>{errors.enterprise}</Error>}
 
                 <Field>
                   <label htmlFor="image">Image</label>
                   <FileUploader
                     accept="image/*"
                     id="image"
-                    name="imagen"
+                    name="image"
                     randomizeFilename
-                    // storageRef={firebase.storage.ref("productos")} // TODO check this line
+                    storageRef={firebase.createStorageRef()} 
                     onUploadStart={handleUploadStart}
                     onUploadError={handleUploadError}
                     onUploadSuccess={handleUploadSuccess}
@@ -180,14 +177,14 @@ const NewProduct = () => {
                   <label htmlFor="description">Description</label>
                   <textarea
                     id="description"
-                    name="descripcion"
-                    value={descripcion}
+                    name="description"
+                    value={description}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                 </Field>
 
-                {errors.descripcion && <Error>{errors.descripcion}</Error>}
+                {errors.description && <Error>{errors.description}</Error>}
               </fieldset>
 
               {error && <Error>{error}</Error>}

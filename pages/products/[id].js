@@ -5,10 +5,10 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import React, { useEffect, useContext, useState } from "react";
 
 // Components
-import Button from "../../components/ui/Button";
-import Error404 from "../../components/layout/404";
-import Layout from "../../components/layout/Layout";
-import { Field, InputSubmit } from "../../components/ui/Form";
+import Button from "@components/ui/Button";
+import Error404 from "@components/layout/404";
+import Layout from "@components/layout/Layout";
+import { Field, InputSubmit } from "@components/ui/Form";
 
 // Contexts
 import FirebaseContext from "@firebase/context";
@@ -65,45 +65,42 @@ const Product = () => {
   if (Object.keys(product).length === 0 && !error) return "Loading...";
 
   const {
-    comentarios,
-    creado,
-    descripcion,
-    empresa,
-    nombre,
+    comments,
+    created,
+    description,
+    enterprise,
+    name,
     url,
-    urlimagen,
-    votos,
-    creador,
-    haVotado,
+    urlimage,
+    votes,
+    owner,
+    votedBy,
   } = product;
 
   /**
    * Validate and manage votes
    */
-  const voteProduct = () => {
+  const voteProduct = async () => {
     if (!user) {
       return router.push("/login");
     }
 
     // Check if the actual user already have voted
-    if (haVotado.includes(user.uid)) return;
+    if (votedBy.includes(user.uid)) return null;
 
     // Save the id of the user who voted
-    const newHaveVoted = [...haVotado, user.uid];
+    const newHaveVoted = [...votedBy, user.uid];
 
     // Get and sum the votes
-    const newTotal = votos + 1;
+    const newTotal = votes + 1;
 
-    // Update the db collection // TODO refactor this function
-    // firebase.db.collection("productos").doc(id).update({
-    //   votos: newTotal,
-    //   haVotado: newHaveVoted
-    // });
+    // Update the db collection 
+    await firebase.voteProduct(id, newTotal, newHaveVoted);
 
     // Update the component state
     saveProduct({
       ...product,
-      votos: newTotal,
+      votes: newTotal,
     });
 
     saveDBQuery(true);
@@ -111,7 +108,7 @@ const Product = () => {
 
   /**
    * Create a new comment
-   * @param {*} e The change event information
+   * @param {object} e The change event information
    */
   const commentChange = (e) => {
     saveComment({
@@ -122,18 +119,14 @@ const Product = () => {
 
   /**
    * Checks if the comments belongs to the post owner
-   * @param {*} id The id of the current user
-   * @returns {true} If the actual user is the post owner
+   * @param {string} id The id of the current user
+   * @returns {boolean} If the actual user is the post owner
    */
-  const isOwner = (id) => {
-    if (creador.id === id) {
-      return true;
-    }
-  };
+  const isOwner = (id) => (owner.id === id);
 
   /**
    * Add a new comment
-   * @param {*} e The submit event data
+   * @param {object} e The submit event data
    */
   const addComment = (e) => {
     e.preventDefault();
@@ -143,21 +136,19 @@ const Product = () => {
     }
 
     // Add extra information to the comment
-    comment.usuarioId = user.uid;
-    comment.usuarioNombre = user.displayName;
+    comment.userId = user.uid;
+    comment.userName = user.displayName;
 
     // Create a copy of the comment and push it to the array
-    const newComments = [...comentarios, comment];
+    const newComments = [...comments, comment];
 
-    // Update DB // TODO refactor
-    // firebase.db.collection("productos").doc(id).update({
-    //   comentarios: newComments
-    // });
+    // Update DB 
+    firebase.commentProduct(id, newComments);
 
     // Update state
     saveProduct({
       ...product,
-      comentarios: newComments,
+      comments: newComments,
     });
 
     saveDBQuery(true);
@@ -169,7 +160,7 @@ const Product = () => {
    */
   const canDelete = () => {
     if (!user) return false;
-    if (creador.id === user.uid) return true;
+    if (owner.id === user.uid) return true;
   };
 
   /**
@@ -180,13 +171,12 @@ const Product = () => {
       return router.push("/login");
     }
 
-    if (creador.id !== user.uid) {
+    if (owner.id !== user.uid) {
       return router.push("/");
     }
 
     try {
-      // TODO refactor
-      // await firebase.db.collection("productos").doc(id).delete();
+      await firebase.deleteProduct(id);
       return router.push("/");
     } catch (error) {
       console.log(error);
@@ -199,25 +189,24 @@ const Product = () => {
         {error ? (
           <Error404 />
         ) : (
-          // TODO refactor css classes names
-          <div className="contenedor">
+          <div className="container">
             <h1
               css={css`
                 text-align: center;
                 margin-top: 5rem;
               `}
             >
-              {nombre}
+              {name}
             </h1>
 
             <ProductContainer>
               <div>
-                <p>Posted {formatDistanceToNow(new Date(creado))}</p>
+                <p>Posted {formatDistanceToNow(new Date(created))}</p>
                 <p>
-                  By: {creador.nombre} from {empresa}
+                  By: {owner.name} from {enterprise}
                 </p>
-                <img src={urlimagen} />
-                <p>{descripcion}</p>
+                <img src={urlimage} />
+                <p>{description}</p>
 
                 {user && (
                   <>
@@ -226,7 +215,7 @@ const Product = () => {
                       <Field>
                         <input
                           type="text"
-                          name="mensaje"
+                          name="message"
                           onChange={commentChange}
                         />
                       </Field>
@@ -243,19 +232,19 @@ const Product = () => {
                   Comments
                 </h2>
 
-                {comentarios.length === 0 ? (
+                {comments.length === 0 ? (
                   "There are no comments yet"
                 ) : (
                   <ul>
-                    {comentarios.map((comentario, i) => (
+                    {comments.map((comment, i) => (
                       <li
-                        key={`${comentario.usuarioId}-${i}`}
+                        key={`${comment.userId}-${i}`}
                         css={css`
                           border: 1px solid #e1e1e1;
                           padding: 2rem;
                         `}
                       >
-                        <p>{comentario.mensaje}</p>
+                        <p>{comment.message}</p>
                         <p>
                           Written by:
                           <span
@@ -264,10 +253,10 @@ const Product = () => {
                             `}
                           >
                             {" "}
-                            {comentario.usuarioNombre}
+                            {comment.userName}
                           </span>
                         </p>
-                        {isOwner(comentario.usuarioId) && (
+                        {isOwner(comment.userId) && (
                           <ProductBuilder>Is Owner</ProductBuilder>
                         )}
                       </li>
@@ -291,7 +280,7 @@ const Product = () => {
                       text-align: center;
                     `}
                   >
-                    {votos} Votes
+                    {votes} Votes
                   </p>
 
                   {user && <Button onClick={voteProduct}>Vote</Button>}

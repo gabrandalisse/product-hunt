@@ -87,43 +87,43 @@ const Votes = styled.div`
 const ProductDetail = ({ product }) => {
   const {
     id,
-    comentarios,
-    creado,
-    descripcion,
-    empresa,
-    nombre,
+    comments,
+    created,
+    description,
+    enterprise,
+    name,
     url,
-    urlimagen,
-    votos,
+    urlimage,
+    votes,
   } = product;
 
   return (
     <Product>
       <ProductDescription>
         <div>
-          <Image src={urlimagen} />
+          <Image src={urlimage} />
         </div>
 
         <div>
           <Link href="/products/[id]" as={`/products/${id}`}>
-            <Title>{nombre}</Title>
+            <Title>{name}</Title>
           </Link>
-          <DescriptionText>{descripcion}</DescriptionText>
+          <DescriptionText>{description}</DescriptionText>
 
           <Comments>
             <div>
               <img src="/static/img/comment.png" />
-              <p>{comentarios.length} Comments</p>
+              <p>{comments.length} Comments</p>
             </div>
           </Comments>
 
-          <p>Published: {formatDistanceToNow(new Date(creado))}</p>
+          <p>Published: {formatDistanceToNow(new Date(created))} ago.</p>
         </div>
       </ProductDescription>
 
       <Votes>
         <div> &#9650; </div>
-        <p>{votos}</p>
+        <p>{votes}</p>
       </Votes>
     </Product>
   );

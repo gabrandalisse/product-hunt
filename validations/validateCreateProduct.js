@@ -6,9 +6,9 @@
 export default function validateCreateProduct(values) {
   let errors = {};
 
-  if (!values.nombre) errors.nombre = "The name is required.";
+  if (!values.name) errors.name = "The name is required.";
 
-  if (!values.empresa) errors.empresa = "The enterprise name is required.";
+  if (!values.enterprise) errors.enterprise = "The enterprise name is required.";
 
   if (!values.url) {
     errors.url = "The product URL is required.";
@@ -16,8 +16,8 @@ export default function validateCreateProduct(values) {
     errors.url = "Invalid URL.";
   }
 
-  if (!values.descripcion)
-    errors.descripcion = "Product description is required.";
+  if (!values.description)
+    errors.description = "Product description is required.";
 
   return errors;
 }

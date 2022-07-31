@@ -2,13 +2,13 @@ import Router from "next/router";
 import { css } from "@emotion/react";
 import React, { useState } from "react";
 import firebase from "@firebase/firebase";
-import Layout from "../components/layout/Layout";
-import useValidation from "../hooks/use-validation";
-import validateCreateAccount from "../validations/validateCreateAccount";
-import { Form, Field, InputSubmit, Error } from "../components/ui/Form";
+import Layout from "@components/layout/Layout";
+import useValidation from "@hooks/use-validation";
+import { Form, Field, InputSubmit, Error } from "@components/ui/Form";
+import validateCreateAccount from "@validations/validateCreateAccount";
 
 const STATE_INICIAL = {
-  nombre: "",
+  name: "",
   email: "",
   password: "",
 };
@@ -19,12 +19,13 @@ const CreateAccount = () => {
   const { values, errors, handleSubmit, handleChange, handleBlur } =
     useValidation(STATE_INICIAL, validateCreateAccount, createAccount);
 
-  const { nombre, email, password } = values;
+  const { name, email, password } = values;
 
   async function createAccount() {
     try {
-      await firebase.registrar(nombre, email, password);
+      await firebase.createUser(name, email, password);
       Router.push("/");
+      
     } catch (error) {
       console.error(
         "An error ocurred while triying to create the user",
@@ -49,19 +50,19 @@ const CreateAccount = () => {
 
           <Form onSubmit={handleSubmit} noValidate>
             <Field>
-              <label htmlFor="nombre">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
-                id="nombre"
+                id="name"
                 placeholder="Your Name"
-                name="nombre"
-                value={nombre}
+                name="name"
+                value={name}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
             </Field>
 
-            {errors.nombre && <Error>{errors.nombre}</Error>}
+            {errors.name && <Error>{errors.name}</Error>}
 
             <Field>
               <label htmlFor="email">Email</label>
