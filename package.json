@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^11.2.0",
@@ -20,5 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-file-uploader": "^2.4.4"
+  },
+  "devDependencies": {
+    "cypress": "^10.3.1"
   }
 }
