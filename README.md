@@ -1,5 +1,56 @@
-# 🔫 Product Hunt Clone
 
-A project based on the Product Hunt webpage. This time, using Next.js for the front-end and for the back-end, something that I always wanted to try, Firebase. The combination of this technologies give amazing results and you can see it for yourself clicking [here]!
+# Product Hunt Clone
 
-[here]: https://product-hunt-clone-9e94f.web.app/
+This is a personal project, it is a clone of the Produc Hunt page. Made with Next.js, Firebase and E2E tested with Cypress.
+
+
+## Tech Stack
+
+**Client:** Next.js, Styled Components
+
+**Server:** Firebase
+
+**Testing:** Cypress
+
+**CI/CD:** Github Actions
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/gabrandalisse/product-hunt/
+```
+
+Go to the project directory
+
+```bash
+  cd product-hunt
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the app
+
+```bash
+  npm run develop
+```
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run cypress
+```
+
+To run Cypress headless, run the following command
+
+```bash
+  npm run cypress:headless
+```
