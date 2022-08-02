@@ -1,8 +1,8 @@
-.listado-productos {
+.products-list {
     background-color: #f3f3f3;
 }
 
-.contenedor {
+.container {
     max-width: 1200px;
     width: 95%;
     padding: 5rem 0;

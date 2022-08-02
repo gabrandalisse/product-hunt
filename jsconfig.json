@@ -6,7 +6,7 @@
         "@firebase/*": ["firebase/*"],
         "@hooks/*": ["hooks/*"],
         "@pages/*": ["pages/*"],
-        "@validacion/*": ["validacion/*"],
+        "@validations/*": ["validations/*"],
       }
     }
   }
