@@ -8,8 +8,8 @@ import validateLogin from "@validations/validateLogin";
 import { Form, Field, InputSubmit, Error } from "@components/ui/Form";
 
 const INICIAL_STATE = {
-  email: "",
-  password: "",
+  email: "reclutier@admin.com",
+  password: "admin-admin",
 };
 
 const Login = () => {
