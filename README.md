@@ -1,7 +1,7 @@
 
 # Product Hunt Clone
 
-This is a personal project, it is a clone of the Produc Hunt page. Made with Next.js, Firebase and E2E tested with Cypress.
+This is a personal project, it is a clone of the Product Hunt page. Made with Next.js, Firebase and E2E tested with Cypress.
 
 
 ## Tech Stack
