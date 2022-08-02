@@ -1,8 +1,8 @@
-beforeEach(() => {
-  cy.visit("http://localhost:3000/login");
-});
-
 describe("Unit tests for the login page", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000/login");
+  });
+  
   it("should display the expected elements", () => {
     cy.get("h1").contains("Log In");
 
