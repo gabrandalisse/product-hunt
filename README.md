@@ -6,14 +6,18 @@ This is a personal project, it is a clone of the Product Hunt page. Made with Ne
 
 ## Tech Stack
 
-**Client:**
-<img alt="Next" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
+**Client**\
+<img alt="Next" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />\
+<img alt="Styled Components" src="https://img.shields.io/badge/-Styled_Components-db7092?style=flat-square&logo=styled-components&logoColor=white" />
 
-**Server:** Firebase
+**Server**\ 
+<img alt="Firebase" src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" />\
 
-**Testing:** Cypress
+**Testing**\ 
+<img alt="Cypress" src="https://img.shields.io/badge/-Cypress-17202C?style=flat-square&logo=cypress&logoColor=black\" />\
 
-**CI/CD:** Github Actions
+**CI/CD**\ 
+<img alt="Github Actions" src="https://img.shields.io/badge/-GitHub%20Actions-FFF?style=flat-square&logo=github-actions&logoColor=#2088FF\" />\
 
 ## Run Locally
 
