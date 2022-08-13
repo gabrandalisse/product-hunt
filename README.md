@@ -7,7 +7,7 @@ This is a personal project, it is a clone of the Product Hunt page. Made with Ne
 ## Tech Stack
 
 **Client**\
-<img alt="Next" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />\
+<img alt="Next" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
 <img alt="Styled Components" src="https://img.shields.io/badge/-Styled_Components-db7092?style=flat-square&logo=styled-components&logoColor=white" />
 
 **Server**\
