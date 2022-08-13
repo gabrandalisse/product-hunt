@@ -6,7 +6,8 @@ This is a personal project, it is a clone of the Product Hunt page. Made with Ne
 
 ## Tech Stack
 
-**Client:** Next.js, Styled Components
+**Client:**
+<img alt="Next" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
 
 **Server:** Firebase
 
