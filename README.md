@@ -14,10 +14,10 @@ This is a personal project, it is a clone of the Product Hunt page. Made with Ne
 <img alt="Firebase" src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" />
 
 **Testing**\
-<img alt="Cypress" src="https://img.shields.io/badge/-Cypress-17202C?style=flat-square&logo=cypress&logoColor=black\" />\
+<img alt="Cypress" src="https://img.shields.io/badge/-Cypress-17202C?style=flat-square&logo=cypress&logoColor=black\" />
 
 **CI/CD**\
-<img alt="Github Actions" src="https://img.shields.io/badge/-GitHub%20Actions-FFF?style=flat-square&logo=github-actions&logoColor=#2088FF\" />\
+<img alt="Github Actions" src="https://img.shields.io/badge/-GitHub%20Actions-FFF?style=flat-square&logo=github-actions&logoColor=#2088FF\" />
 
 ## Run Locally
 
